@@ -1032,25 +1032,30 @@ describe('Testing CHN Phone Quick Test', () => {
 
 
 describe('Testing ARG numbers', () => {
-	describe('Test for number without 9 prefix', () => {
-		const number = '+54 233 123 4567';
-		const result = ['+542331234567', 'ARG'];
+	describe('Test 1 - with international prefix', () => {
+		const number = '+5491132461234';
+		const country = 'ARG';
+		const result = ['+5491132461234', 'ARG'];
+
 		test('returns ' + result, () => {
-			expect(phone(number)).toEqual(result);
+			expect(phone(number, country)).toEqual(result);
 		});
 	});
 
-	describe('Test for number with 9 prefix', () => {
-		const number = '+54 9 233 123 4567';
-		const result = ['+542331234567', 'ARG'];
-		test('returns ' + result, () => {
-			expect(phone(number)).toEqual(result);
-		});
-	});
-
-	describe('Test for number with 15 prefix', () => {
-		const number = '+54 15 233 123 4567';
+	describe('Test 1 - without international prefix', () => {
+		const number = '+541132461234';
+		const country = 'ARG';
 		const result = [];
+
+		test('returns ' + result, () => {
+			expect(phone(number, country)).toEqual(result);
+		});
+	});
+
+	describe('Test 1 - with international prefix, without country code', () => {
+		const number = '+5491132461234';
+		const result = ['+5491132461234', 'ARG'];
+
 		test('returns ' + result, () => {
 			expect(phone(number)).toEqual(result);
 		});
